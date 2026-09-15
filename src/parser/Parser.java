@@ -91,7 +91,7 @@ public class Parser {
         else parseStatement();
     }
 
-    // int x;   OR  int x = expr;
+    // int x; OR int x = expr;
     private void parseDeclarationStatement() {
         expect(TokenType.INT, "Expected 'int'");
         expect(TokenType.IDENT, "Expected identifier");
@@ -104,9 +104,7 @@ public class Parser {
     }
 
     // Handles:
-    //   x = expr;
-    //   x++;
-    //   x--;
+    //   x = expr; x++; x--;
     private void parseIdentifierStatement() {
         expect(TokenType.IDENT, "Expected identifier");
 
@@ -137,7 +135,7 @@ public class Parser {
 
         parseStatementOrBlock();
 
-        // optional else / elseif (you have ELSEIF token; we'll support both styles)
+        // optional else / elseif 
         while (peekType() == TokenType.ELSEIF) {
             advance(); // ELSEIF
             expect(TokenType.LPAREN, "Expected '(' after else if");

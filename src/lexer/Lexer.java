@@ -76,9 +76,9 @@ public class Lexer {
 
         String text = sb.toString();
 
-        // Special case: "else if" => ELSEIF token
+        // "else if" case: => ELSEIF token
         if ("else".equals(text)) {
-            // Save current lexer position (we are right after "else")
+            // Save current lexer position (right after "else")
             int savedPos = position;
             int savedLine = line;
             int savedCol = column;

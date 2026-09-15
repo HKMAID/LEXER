@@ -36,7 +36,7 @@ public final class App {
             JButton runBtn = new JButton("Run");
             JButton clearBtn = new JButton("Clear output");
 
-            // Quick templates dropdown (optional but handy)
+            // Templates dropdown
             JComboBox<Template> templateCombo = new JComboBox<>(Template.values());
             templateCombo.setSelectedItem(Template.FULL_PROGRAM);
 
@@ -160,7 +160,6 @@ public final class App {
 
         } catch (RuntimeException ex) {
             // Convert to C-style error
-            // Your Token.toString() already contains "at line:col". We’ll try to extract line/col from the message.
             String cStyle = toCStyleError(ex.getMessage());
             outArea.append(cStyle + "\n");
             JOptionPane.showMessageDialog(frame, cStyle, "Compile error", JOptionPane.ERROR_MESSAGE);
@@ -172,7 +171,6 @@ public final class App {
 
     private static String toCStyleError(String msg) {
         // Expected format from your parser: "message at token TOKEN('x') at L:C"
-        // We’ll best-effort parse " at " last part.
         int atIdx = msg.lastIndexOf(" at ");
         if (atIdx >= 0) {
             String left = msg.substring(0, atIdx).trim();
@@ -197,7 +195,7 @@ public final class App {
 
     private static void setNiceLookAndFeel() {
         try {
-            // Nimbus is built-in and usually looks nicer than default Metal.
+            // Nimbus 
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     UIManager.setLookAndFeel(info.getClassName());
