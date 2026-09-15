@@ -280,6 +280,57 @@ public final class App {
                         x = 0;
                         break;
                 }
+                """),
+
+        DO_WHILE("Do-While loop", """
+                int i = 0;
+                do {
+                    i++;
+                } while (i < 5);
+                """),
+
+        IF_ELSE_IF("If / Else-If / Else", """
+                int x = 3;
+                if (x == 1) {
+                    x = 10;
+                } else if (x == 2) {
+                    x = 20;
+                } else if (x == 3) {
+                    x = 30;
+                } else {
+                    x = 0;
+                }
+                """),
+
+        NESTED_LOOPS("Nested loops", """
+                int i = 0;
+                int j = 0;
+                for (int k = 0; k < 5; k++) {
+                    while (j < k) {
+                        j = j + 1;
+                    }
+                    i = i + j;
+                }
+                """),
+
+        COMMENTS("Comments (// and /* */)", """
+                // This is a single-line comment
+                int x = 42; // trailing comment
+                /*
+                   Multi-line comment
+                   spanning three lines
+                */
+                x = x + 1;
+                """),
+
+        ERROR_MISSING_SEMICOLON("ERROR — Missing semicolon", """
+                int x = 5
+                x = x + 1;
+                """),
+
+        ERROR_UNKNOWN_TOKEN("ERROR — Unknown token (@)", """
+                int x = 5;
+                x = x @ 2;
                 """);
 
         final String label;

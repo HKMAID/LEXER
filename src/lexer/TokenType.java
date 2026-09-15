@@ -8,16 +8,14 @@ public enum TokenType {
     IDENT, NUMBER,
 
     //operators
-    ASSIGN, EQ, LT, GT, LTE ,GTE, NEQ, PLUS, MINUS,MUL ,DIV,INC ,DEC,
+    ASSIGN, EQ, LT, GT, LTE ,GTE, NEQ, PLUS, MINUS, MUL , DIV, INC ,DEC,
 
     //SEPERATORS
     SEMICOLON, COMMA, LPAREN, RPAREN, LBRACE, RBRACE ,COLON,
-
+    
     //SPECIAL
     EOF,
-    UNKNOWN,
-    CMNTSTART,
-    COMMENT
+    UNKNOWN
 
 
 }

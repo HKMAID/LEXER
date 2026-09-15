@@ -211,27 +211,23 @@ public class Parser {
     //   i = expr
     //   i++
     //   i--
-    // (and we also allow just an expression if you later extend)
     private void parseForInitOrUpdate() {
-        if (peekType() == TokenType.IDENT) {
-            advance(); // consume IDENT
-
-            if (match(TokenType.ASSIGN)) {
-                parseExpression();
-                return;
-            }
-
-            if (match(TokenType.INC) || match(TokenType.DEC)) {
-                return;
-            }
-
-            // If you want stricter behavior, keep this error.
-            error("Expected '=', '++', or '--' in for init/update");
+        if (peekType() != TokenType.IDENT) {
+            error("Expected identifier in for init/update");
         }
 
-        // If you want to allow other expression forms here, you can uncomment:
-        // parseExpression();
-        error("Expected identifier in for init/update");
+        advance(); // consume IDENT
+
+        if (match(TokenType.ASSIGN)) {
+            parseExpression();
+            return;
+        }
+
+        if (match(TokenType.INC) || match(TokenType.DEC)) {
+            return;
+        }
+
+        error("Expected '=', '++', or '--' after identifier in for init/update");
     }
 
     private void parseSwitchStatement() {

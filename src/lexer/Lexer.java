@@ -20,11 +20,11 @@ public class Lexer {
         List<Token> tokens = new ArrayList<>();
 
         while (currentChar() != '\0') {
-            SkipWhitSpace();
+            skipWhiteSpace();
 
             // keep skipping comments + whitespace
             while (skipCommentIfAny()) {
-                SkipWhitSpace();
+                skipWhiteSpace();
             }
 
             if (currentChar() == '\0') break;
@@ -59,11 +59,10 @@ public class Lexer {
         position++;
     }
 
-    private void SkipWhitSpace(){
-        while(Character.isWhitespace(currentChar())){
+    private void skipWhiteSpace() {
+        while (Character.isWhitespace(currentChar())) {
             advance();
         }
-
     }
     private Token readIdentifierOrKeyword() {
         int startColumn = column;
@@ -125,6 +124,7 @@ public class Lexer {
     }
     private Token readNumber() {
         int startColumn = column;
+        int startLine = line;
         StringBuilder sb = new StringBuilder();
 
         while (Character.isDigit(currentChar())) {
@@ -132,7 +132,7 @@ public class Lexer {
             advance();
         }
 
-        return new Token(TokenType.NUMBER, sb.toString(), line, startColumn);
+        return new Token(TokenType.NUMBER, sb.toString(), startLine, startColumn);
     }
 
     private char peekNextChar() {
